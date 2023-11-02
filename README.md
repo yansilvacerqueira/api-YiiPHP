@@ -4,7 +4,6 @@
 
 - Api conta com dois endpoints um para user e outro para task.
 - Banco de dados postgres, relacao 1 para N entre user e task.
-- Tentei fazer filtro e um endpoint para pegar as tasks especificas de cada usuario mas n consegui 🥲
 - Ao longo dessa semana vou fazendo correcoes e subindo testes unitarios
 - Deixa sua estrelinha ai ze
 
@@ -13,6 +12,7 @@
 users:
 - `GET /user` – para consultar todos recursos criados.
 - `GET /user/[:id]` – para consultar um recurso especifico.
+- `GET /user/[:id]/task` – para consultar as tasks de um user.
 - `POST /user` – para criar um recurso.
 - `PUT /user[:id]` – para atualizar um recurso.
 - `DELETE /user/[:id]` – para deletar um recurso.
