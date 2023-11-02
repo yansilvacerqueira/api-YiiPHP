@@ -9,7 +9,7 @@ class User extends ActiveRecord {
         return 'users'; // Nome da tabela no banco de dados
     }
 
-    public function getTasks()
+    public function getTask()
     {
         return $this->hasMany(Task::class, ['user_id' => 'id']);
     }

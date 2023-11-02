@@ -2,6 +2,8 @@
 namespace app\controllers;
 
 use yii\rest\ActiveController;
+use app\models\User;
+
 use yii\data\ActiveDataFilter;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -10,12 +12,6 @@ class UserController extends ActiveController
 {
    public $modelClass = 'app\models\User';
 
-   public function actions()
-   {
-       return [
-           'tasks' => 'app\controllers\UserController::actionTasks',
-       ];
-   }
 
    public function actionIndex()
    {
@@ -64,18 +60,27 @@ class UserController extends ActiveController
       return $user->getErrors();
    }
 
-   public function actionTasks($id)
+   public function actionTask($id)
    {
-      if ($user = User::findOne($id) !== null) {
-         return $user;
-      }
+      $user = User::findOne($id); // Obter um usuário pelo ID
 
-      throw new NotFoundHttpException("The requested does not exist.");
+      if (!$user) {
+          throw new NotFoundHttpException("User not found.");
+      }
+  
+      $tasks = $user->getTask()->all(); // Obter todas as tarefas associadas a esse usuário
+  
+      if (empty($tasks)) {
+          throw new NotFoundHttpException("No tasks");
+      }
+  
+      return $tasks;
    }
 
    public function actionUpdate($id)
    {
       $user = User::findOne($id);
+      
       if ($user->load(Yii::$app->request->getBodyParams(), '')) {
          throw new NotFoundHttpException("User not found.");
       }

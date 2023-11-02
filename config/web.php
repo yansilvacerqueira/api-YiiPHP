@@ -10,6 +10,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        
     ],
     'components' => [
         'request' => [
@@ -59,7 +60,7 @@ $config = [
                         'GET' => 'index',    // GET /user
                         'POST' => 'create',  // POST /user
                         'GET <id:\d+>' => 'view',   // GET /user/1
-                        'GET user/<id:\d+>/tasks' => 'user/tasks',
+                        'GET <id:\d+>/task' => 'task',
                         'PUT <id:\d+>' => 'update', // PUT /user/1
                         'DELETE <id:\d+>' => 'delete', // DELETE /user/1
                     ],
